@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="18" y1="10" x2="108" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff1a8"/>
+      <stop offset=".42" stop-color="#f4c542"/>
+      <stop offset="1" stop-color="#a86f16"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset=".55" stop-color="#b8c0c7"/>
+      <stop offset="1" stop-color="#66727a"/>
+    </linearGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity=".72"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- archive/report card -->
+    <path d="M27 17h56l18 18v76H27z" fill="#071116" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M83 17v20h18" fill="none" stroke="url(#gold)" stroke-width="5"/>
+
+    <!-- football laces / season marker -->
+    <path d="M42 39c7-10 22-13 34-7 10 5 15 16 12 26-3 11-15 18-28 17-12-1-22-9-23-19-1-6 1-12 5-17Z" fill="#0d171d" stroke="url(#gold)" stroke-width="3.5"/>
+    <path d="M52 38c8 8 15 17 22 29" stroke="url(#steel)" stroke-width="3"/>
+    <path d="M54 45l7-4M59 52l7-4M64 59l7-4" stroke="url(#steel)" stroke-width="3"/>
+
+    <!-- recap lines -->
+    <path d="M41 86h45M41 96h35" stroke="url(#gold)" stroke-width="5"/>
+
+    <!-- season star -->
+    <path d="m91 78 3.8 7.8 8.6 1.2-6.2 6 1.5 8.5-7.7-4-7.7 4 1.5-8.5-6.2-6 8.6-1.2Z" fill="url(#gold)" stroke="#8c5a11" stroke-width="2"/>
+  </g>
+</svg>

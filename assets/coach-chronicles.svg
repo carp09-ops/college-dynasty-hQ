@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="18" y1="18" x2="108" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1A8"/><stop offset=".42" stop-color="#F4C542"/><stop offset="1" stop-color="#A86F16"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity=".72"/></filter>
+  </defs>
+  <g filter="url(#shadow)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- open chronicle / playbook -->
+    <path d="M15 28c16-5 31-2 45 8v70c-14-9-29-12-45-7V28Z" fill="#071116" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M113 28c-16-5-31-2-45 8v70c14-9 29-12 45-7V28Z" fill="#071116" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M64 37v69" stroke="url(#gold)" stroke-width="4"/>
+    <!-- playbook lines -->
+    <path d="M27 49h20M27 62h24M27 75h16M81 49h20M77 62h24M85 75h16" stroke="#F4C542" stroke-width="3" opacity=".72"/>
+    <!-- football at the spine -->
+    <path d="M49 85c7-12 23-18 34-11 3 11-7 24-21 28-10-2-15-8-13-17Z" fill="url(#gold)" stroke="#8C5A11" stroke-width="2.5"/>
+    <path d="M57 92c6-5 12-9 19-11M63 86l7 8M59 89l7 8" stroke="#071116" stroke-width="2.5"/>
+    <!-- pen nib -->
+    <path d="M93 18l16 16-24 24-13 3 3-13 18-30Z" fill="url(#gold)" stroke="#8C5A11" stroke-width="2.5"/>
+    <path d="M75 48l10 10M98 23l7 7" stroke="#071116" stroke-width="2.5"/>
+  </g>
+</svg>
