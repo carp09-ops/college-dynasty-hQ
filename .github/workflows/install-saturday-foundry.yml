@@ -36,7 +36,10 @@ jobs:
 
       - name: Install new hero and Dynasties assets
         run: |
-          cat .sf-deploy/part-*.b64 | base64 -d > /tmp/sf-new-assets.zip
+          : > /tmp/sf-new-assets.zip
+          for f in .sf-deploy/chunk-*.b64; do
+            base64 -d "$f" >> /tmp/sf-new-assets.zip
+          done
           unzip -o /tmp/sf-new-assets.zip -d .
 
       - name: Patch HTML for new hero and Dynasties icon
