@@ -4,7 +4,7 @@ on:
   push:
     branches: [saturday-foundry-test]
     paths:
-      - '.sf-deploy/**'
+      - '.sf-deploy/READY'
   workflow_dispatch:
 
 permissions:
@@ -18,12 +18,41 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: saturday-foundry-test
-      - name: Rebuild deployment package
+
+      - name: Pull current branded build from Netlify
         run: |
-          cat .sf-deploy/part-*.b64 | base64 -d > /tmp/saturday-foundry.zip
-          rm -rf assets index.html _headers
-          unzip -o /tmp/saturday-foundry.zip -d .
+          BASE='https://peaceful-malasada-be0e5e.netlify.app'
+          curl -fsSL "$BASE/" -o index.html
+          mkdir -p assets/icons-premium assets/icons
+          for f in saturday-foundry-lockup.webp saturday-foundry-shield.webp; do
+            curl -fsSL "$BASE/assets/$f" -o "assets/$f"
+          done
+          for f in analytics coach-chronicles conferences dynasty-pulse home live media more recap records recruiting rivalries schedule settings standings teams trophy-room vegas; do
+            curl -fsSL "$BASE/assets/icons-premium/${f}@1x.webp" -o "assets/icons-premium/${f}@1x.webp"
+          done
+          for f in coach conference home more recap schedule vegas; do
+            curl -fsSL "$BASE/assets/icons/$f.svg" -o "assets/icons/$f.svg" || true
+          done
+
+      - name: Install new hero and Dynasties assets
+        run: |
+          cat .sf-deploy/part-*.b64 | base64 -d > /tmp/sf-new-assets.zip
+          unzip -o /tmp/sf-new-assets.zip -d .
+
+      - name: Patch HTML for new hero and Dynasties icon
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          s = s.replace('assets/saturday-foundry-hero.webp', 'assets/saturday-foundry-hero-wordless.webp')
+          s = s.replace('assets/saturday-foundry-mobile-hero.webp', 'assets/saturday-foundry-mobile-wordless.webp')
+          s = s.replace("settings:'settings',more:'more'", "settings:'settings',dynasties:'dynasties',more:'more'")
+          s = s.replace("media:'media',admin:'settings',", "media:'media',dynastyChooser:'dynasties',admin:'settings',")
+          p.write_text(s)
+          PY
           rm -rf .sf-deploy
+
       - name: Commit deployed build
         run: |
           git config user.name "github-actions[bot]"
